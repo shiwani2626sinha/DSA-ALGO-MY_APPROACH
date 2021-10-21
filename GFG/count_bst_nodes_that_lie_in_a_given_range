@@ -1,0 +1,43 @@
+// A Binary Search Tree node
+/*
+Structure of node
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+}
+*/
+//Complete this function
+public static int getCountOfNode(Node root,int l, int h)
+{
+    //Your code here
+    if(root.left==null && root.right==null)
+    {if(root.data>=l && root.data<=h)
+    return 1;
+    else return 0;
+    }
+    else if(root.left!=null && root.right==null )
+    {
+        int lh=getCountOfNode( root.left, l, h);
+        if(root.data>=l && root.data<=h)
+        return 1+lh;
+        else return lh;
+    }
+    else if(root.left==null && root.right!=null )
+    {
+        int rh=getCountOfNode(root.right, l,  h);
+        if(root.data>=l && root.data<=h)
+        return 1+rh;
+        else return rh;
+    }
+    else
+    {
+        int lh=getCountOfNode( root.left, l, h);
+        int rh=getCountOfNode(root.right, l,  h);
+        if(root.data>=l && root.data<=h)
+        return 1+rh+lh;
+        else return rh+lh;
+    }
+    
+}
